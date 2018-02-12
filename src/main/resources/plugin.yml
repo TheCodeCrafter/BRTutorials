@@ -1,0 +1,8 @@
+name: BRTutorials
+version: 1.0
+main: net.fathomtech.plugins.BRTutorials.BRTutorialPlugin
+author: TheCodeCrafter
+description: A plugin that allows you to create tutorials for your players.
+commands:
+  brtutorials:
+    description: An info-providing command for those that want to see the version and credentials of the plugin
