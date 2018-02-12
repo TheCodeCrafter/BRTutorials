@@ -5,4 +5,8 @@ public enum Permission {
     this.permission = permission;
     return permission;
   }
+  
+  ADMIN("brtutorials.admin"),
+  START_TUTORIAL("brtutorials.start"),
+  CANCEL_TUTORIAL("brtutorials.cancel")
 }
