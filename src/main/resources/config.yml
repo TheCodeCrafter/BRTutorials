@@ -1,0 +1,141 @@
+#################################
+# ~ Beacon Reloaded Tutorials ~ #
+#################################
+
+# Should the plugin load it's commands and event listeners (wasting memory if you're not using the plugin)
+enabled: true
+
+#############
+# TUTORIALS #
+#############
+
+tutorials:
+
+  # Here's an example tutorial
+  Skyblock:
+  
+    # You can use this as an indicator to the beginning of a tutorial
+    start: "Now starting Skyblock tutorial..."
+    
+    # These are some example steps to enhance your understanding of the configuration style
+    steps:
+      
+      # Here's a basic blank step that just sends a message
+      blankStep:
+        message: "Welcome to your island! Let's get started!"
+        event: none
+      
+      # Here's an event-based step that asks for the player to break 4 blocks of Oak Wood.
+      woodStep:
+      
+        # This is the settings to do when the player begins the step
+        begin:
+          
+          # This is the message that will probably explain what to do
+          message: "&3Let's get started by mining &6four &3blocks of wood from your tree"
+          
+          # A nice little sound do signal the start of the step
+          sound: minecraft:BLOCK_NOTE_XYLOPHONE
+          
+        # This is the event that the step will check for to see if it's been completed
+        event:
+        
+          # The class of the event. This allows for you to later use new events without as much work to update the plugin
+          type: org.bukkit.event.block.BlockBreakEvent
+          
+          # This is one of the options you can set specifically for this event. Not all events have this option.
+          material: Material.WOOD
+          
+          # How many times should we receive this event before finishing the step
+          times: 4
+        
+        # After we're signaled the completion by the event, we send this message and/or play this sound
+        completion:
+          message: "You did it! You broke four blocks of Oak Wood. On to the next step!"
+          sound: minecraft:BLOCK_NOTE_CHIME
+      
+      # Like the step is named, you can name these steps whatever you would prefer
+      theseStepsCanBeAnyRandomName:
+        
+        begin:
+          message: "Now let's get a sappling so we can plant a new tree!"
+        
+        event:
+          type: org.bukkit.event.player.PlayerPickupItemEvent
+          material: Material.SAPPLING
+          times: 1
+        
+        completion:
+          message: "You found a sappling!"
+          sound: minecraft:BLOCK_NOTE_CHIME
+          
+      
+      timeStep:
+        begin:
+          message: "Wait for 3 seconds!"
+        
+        event:
+          # We can also use this event, where we can wait a certain amount of time
+          type: net.fathomtech.plugins.BRTutorials.events.TimeEvent
+          
+          # The format for this is HH:MM:SS (Hour + Hour : Minute + Minute : Second + Second)
+          time: 00:00:03
+        
+    
+    end: "You've completed the Skyblock tutorial!"
+    
+  # These tutorials can even be used to save administration time by introducing helpers to their new commands without mod
+  # intervention
+  helperTutorial:
+  
+    # You can set a prefix for the messages sent to the player by this tutorial
+    prefix: "&8[&3Brian&8] &r"
+  
+    start: "You're a helper now! I'm here to introduce you to your new commands and permissions"
+    
+    steps:
+      muteTest:
+        begin:
+          message: "You can now do /mute! Try /mute, and do /mute Brian"
+        event:
+          
+          # We can check for commands run by the player
+          type: net.fathomtech.plugins.BRTutorials.events.CommandEvent
+          
+          # The command we want them to run
+          command: mute Brian
+        
+        # Do this if the player doesn't do what's expected of them. (Note that this is rather strict, and you should check the             # Wiki to see exactly what you can do with this to make it more user friendly.
+        failure:
+          message: "Don't do any other command, just do /mute Brian to continue!"
+          sound: minecraft:BLOCK_NOTE_SNARE
+        
+        completion:
+          message: "You muted me! Good job!"
+          sound: minecraft:BLOCK_NOTE_CHIME
+          
+
+###########
+# OPTIONS #
+###########
+
+# The console/file logging for this plugin
+log:
+  
+  # Whether or not to log tutorial events/messages
+  enabled: true
+  
+  # Whether or not to save console logging to a file
+  file: false
+  
+  # What level of logging? (0 = Light, 1 = Medium, 2 = Heavy, 3 = Debug)
+  level: 0
+
+# These are what we use to make certain steps and tutorials unavailable to certain players
+permissions:
+  enabled: false
+  
+# Custom Events by other developers can be included, but can be rather buggy. If you use these, be wary that they could cause errors
+customEvents:
+  enabled: false
+  
