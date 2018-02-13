@@ -2,11 +2,14 @@ package net.fathomtech.plugins.BRTutorials.handlers;
 
 public enum Permission {
   Permission(String permission) {
-    this.permission = permission;
-    return permission;
+    this.NODE = "brtutorials." + permission;
   }
   
-  ADMIN("brtutorials.admin"),
-  START_TUTORIAL("brtutorials.start"),
-  CANCEL_TUTORIAL("brtutorials.cancel")
+  public String NODE() {
+    return this.NODE;
+  }
+  
+  ADMIN("admin"),
+  START_TUTORIAL("start"),
+  CANCEL_TUTORIAL("cancel")
 }
