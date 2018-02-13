@@ -138,4 +138,4 @@ permissions:
 # Custom Events by other developers can be included, but can be rather buggy. If you use these, be wary that they could cause errors
 customEvents:
   enabled: false
-  
+  debug: true
