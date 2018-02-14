@@ -51,7 +51,7 @@ public class Configuration {
   
   public static void loadConfig() {
     for(String tutorial : plugin.getConfig().getConfigurationSection("tutorials").getKeys(false)) {
-      TUTORIALS.push(TutorialUtils.createTutorial(tutorial, plugin.getConfig().getConfigurationSection("tutorials." + tutorial));
+      TUTORIALS.push(TutorialUtils.createTutorial(tutorial, plugin.getConfig().getConfigurationSection("tutorials." + tutorial)));
     }
     
     ENABLED = plugin.getConfig().getBoolean("enabled");
@@ -64,5 +64,10 @@ public class Configuration {
     
     CUSTOMEVENTS = plugin.getConfig().getBoolean("customEvents.enabled");
     CUSTOMDEBUG = plugin.getConfig().getBoolean("customEvents.debug");
+  }
+  
+  public static void reloadConfig() {
+    plugin.getConfig().reload();
+    this.loadConfig();
   }
 }
