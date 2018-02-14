@@ -51,7 +51,7 @@ public class Configuration {
   
   public static void loadConfig() {
     for(String tutorial : plugin.getConfig().getConfigurationSection("tutorials").getKeys(false)) {
-      TUTORIALS.push(TutorialUtils.parseString(tutorial));
+      TUTORIALS.push(TutorialUtils.createTutorial(tutorial, plugin.getConfig().getConfigurationSection("tutorials." + tutorial));
     }
     
     ENABLED = plugin.getConfig().getBoolean("enabled");
