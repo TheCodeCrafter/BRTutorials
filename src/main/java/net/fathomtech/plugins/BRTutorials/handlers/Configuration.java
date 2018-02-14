@@ -67,7 +67,18 @@ public class Configuration {
   }
   
   public static void reloadConfig() {
-    plugin.getConfig().reload();
+    plugin.reloadConfig();
     this.loadConfig();
+    reloadTutorials();
+  }
+  
+  public static HashMap<String, Tutorial> loadTutorials() {
+    HashMap<String, Tutorial> returnTutorials = new HashMap<String, Tutorial>();
+    
+    for(Tutorial tutorial : TUTORIALS) {
+      returnTutorials.put(tutorial.getName(), tutorial);
+    }
+    
+    return returnTutorials;
   }
 }
