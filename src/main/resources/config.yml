@@ -43,8 +43,10 @@ tutorials:
           # The class of the event. This allows for you to later use new events without as much work to update the plugin
           type: org.bukkit.event.block.BlockBreakEvent
           
-          # This is one of the options you can set specifically for this event. Not all events have this option.
-          material: Material.WOOD
+          # These are things that you will check for when the event is fired to see if it counts.
+          arguments:
+            # This is one of the options you can set specifically for this event. Not all events have this option.
+            material: Material.WOOD
           
           # How many times should we receive this event before finishing the step
           times: 4
@@ -62,7 +64,10 @@ tutorials:
         
         event:
           type: org.bukkit.event.player.PlayerPickupItemEvent
-          material: Material.SAPPLING
+          
+          arguments:
+            material: Material.SAPPLING
+          
           times: 1
         
         completion:
