@@ -86,6 +86,26 @@ public class Step {
   }
   
   public void setCompletionMessage(String newMessage) {
-    this.compe 
+    this.completionMessage = newMessage;
+  }
+  
+  public void setBeginSound(String newSound) {
+    this.beginSound = newSound;
+  }
+  
+  public void setFailureSound(String newSound) {
+    this.failureSound = newSound;
+  }
+  
+  public void setCompletionSound(String newSound) {
+    this.completionSound = newSound;
+  }
+  
+  public void setEvent(Event newEvent) {
+    this.event = newEvent;
+  }
+  
+  public void setTutorial(Tutorial tutorial) {
+    this.tutorial = tutorial;
   }
 }
