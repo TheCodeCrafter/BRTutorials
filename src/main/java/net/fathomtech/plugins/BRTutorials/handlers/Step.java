@@ -70,4 +70,22 @@ public class Step {
       throw new Error("The tutorial for event " + this.getName() + " has not been set!");
     }
   }
+  
+  // SETTERS
+  
+  public void setName(String newName) {
+    this.name = newName; 
+  }
+  
+  public void setBeginMessage(String newMessage) {
+    this.beginMessage = newMessage; 
+  }
+  
+  public void setFailureMessage(String newMessage) {
+    this.failureMessage = newMessage; 
+  }
+  
+  public void setCompletionMessage(String newMessage) {
+    this.compe 
+  }
 }
