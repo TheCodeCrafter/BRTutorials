@@ -11,7 +11,7 @@ public class Event {
   public Event(String eventClass, HashMap<String, String> args, int eTimes) {
     this.EventClass = Class.forName(eventClass);
     
-    if(this.EventClass == null {
+    if(this.EventClass == null) {
       this.EventClass = net.fathomtech.plugins.BRTutorials.events.NoEvent;
     }
     
@@ -68,17 +68,15 @@ public class Event {
     this.eventTimes = newEventTimes;
   }
   
-  public void incrementEventTimes() {
-    this.eventTimes++;
-  }
-  
-  public void decreaseEventTimes() {
-    this.eventTimes--;
-  }
-  
   public void setEventCount(int newEventCount) {
     this.eventCount = newEventCount;
   }
   
-  public void incrementEventCount
+  public void incrementEventCount() {
+    this.eventCount++;
+  }
+  
+  public void decreaseEventCount() {
+    this.eventCount--;
+  }
 }
