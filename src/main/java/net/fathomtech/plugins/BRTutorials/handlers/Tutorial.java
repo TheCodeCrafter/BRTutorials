@@ -3,7 +3,7 @@ package net.fathomtech.plugins.BRTutorials.handlers;
 public class Tutorial {
   public String name;
   
-  public ArrayList<Step> steps;
+  public Step[] steps;
   public int stepCount;
   
   public String prefix;
@@ -14,7 +14,7 @@ public class Tutorial {
   
   public Permission permission;
   
-  public Tutorial(String n, ArrayList<Step> s, String pre, String suf, String sMessage, String eMessage, Permission perm) {
+  public Tutorial(String n, Step[] s, String pre, String suf, String sMessage, String eMessage, Permission perm) {
     name = n;
     steps = s;
     stepCount = s.length;
@@ -35,8 +35,12 @@ public class Tutorial {
     return this.name;
   }
   
-  public ArrayList<Steps> getSteps() {
+  public Step[] getSteps() {
     return this.steps;
+  }
+  
+  pubic Step getStep(int number) {
+    return this.steps[number];
   }
   
   public int getStepCount() {
@@ -63,5 +67,26 @@ public class Tutorial {
   
   public void setName(String newName) {
     this.name = newName;
+  }
+  
+  public void setStep(index, Step newStep) {
+    this.steps[index] = newStep;
+    this.stepCount = steps.length;
+  }
+  
+  public void setPrefix(String newPrefix) {
+    this.prefix = newPrefix;
+  }
+  
+  public void setSuffix(String newSuffix) {
+    this.suffix = newSuffix;
+  }
+  
+  public void setStartMessage(String newMessage) {
+    this.startMessage = newMessage;
+  }
+  
+  public void setEndMessage(String newMessage) {
+    this.endMessage = newMessage;
   }
 }
