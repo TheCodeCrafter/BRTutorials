@@ -25,6 +25,10 @@ public class TutorialUtils {
       String completionSound = steps.getString(stepName + ".completion.sound");
       
       // RETREIVING EVENT VIA REFLECTIONS
+      ConfigurationSection eventSection = steps.getConfigurationSection(stepName + ".event");
+      
+      String eventType = eventSection.getString("type");
+      Class EventClass = Class.forName(eventType);
     }
   }
 }
