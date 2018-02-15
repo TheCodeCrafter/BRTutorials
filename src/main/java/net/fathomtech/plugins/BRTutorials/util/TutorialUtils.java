@@ -27,8 +27,22 @@ public class TutorialUtils {
       // RETREIVING EVENT VIA REFLECTIONS
       ConfigurationSection eventSection = steps.getConfigurationSection(stepName + ".event");
       
-      String eventType = eventSection.getString("type");
-      Class EventClass = Class.forName(eventType);
+      // NOW LET'S GET THE CLASS
+      String eventClassName = eventSection.getString("type");
+      Class EventClass = Class.forName(eventClassName);
+      
+      HashMap<String, ConfigurationSection> methods = (HashMap<String, ConfigurationSection>) eventSection.get("arguments.methods");
+      ArrayList<Argument> arguments = new ArrayList<Argument>();
+      
+      for(String argumentName : methods.getKeys()) {
+        ConfigurationSection arg = methods.get(argumentName);
+        String method = arg.getString("method");
+        String value = arg.getString("value");
+        
+        Argument argument = new Argument(argumentName, method, true, value);
+        arguments.add(argument);
+      }
+      
     }
   }
 }
