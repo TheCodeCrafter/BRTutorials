@@ -45,8 +45,13 @@ tutorials:
           
           # These are things that you will check for when the event is fired to see if it counts.
           arguments:
-            # This is one of the options you can set specifically for this event. Not all events have this option.
-            material: Material.WOOD
+            # Most event handlers (All Bukkit ones), will use methods rather than any constants, so here you can check methods.
+            methods:
+              
+              # The name of this. Only important for reporting errors in the console.
+              checkMaterial:
+                method: "getType"
+                value: Material.DIRT
           
           # How many times should we receive this event before finishing the step
           times: 4
@@ -66,7 +71,10 @@ tutorials:
           type: org.bukkit.event.player.PlayerPickupItemEvent
           
           arguments:
-            material: Material.SAPPLING
+            methods:
+              checkMaterial:
+                method: "getType"
+                value: Material.SAPPLING
           
           times: 1
         
