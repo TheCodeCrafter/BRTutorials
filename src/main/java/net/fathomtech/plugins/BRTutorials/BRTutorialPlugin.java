@@ -43,4 +43,15 @@ public class BRTutorialPlugin extends JavaPlugin {
   public Tutorial getTutorial(String name) {
     return this.tutorials.get(name);
   }
+  
+  public ArrayList<Tutorial> getTutorials() {
+    
+    ArrayList<Tutorial> returnTutorials = new ArrayList<Tutorial>();
+    
+    for(String key : this.tutorials.keySet()) {
+      returnTutorials.add(this.tutorials.get(key));
+    }
+    
+    return returnTutorials;
+  }
 }
