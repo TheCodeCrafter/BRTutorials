@@ -35,4 +35,12 @@ public class BRTutorialPlugin extends JavaPlugin {
   public void loadTutorials() {
     this.tutorials = this.config.loadTutorials();
   }
+  
+  public void addTutorial(Tutorial tutorial) {
+    this.tutorials.put(tutorial.getName(), tutorial);
+  }
+  
+  public Tutorial getTutorial(String name) {
+    return this.tutorials.get(name);
+  }
 }
