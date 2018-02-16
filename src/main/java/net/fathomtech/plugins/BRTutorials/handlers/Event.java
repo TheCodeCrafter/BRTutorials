@@ -3,12 +3,12 @@ package net.fathomtech.plugins.BRTutorials.handlers;
 public class Event {
   public class EventClass;
   
-  public Hashmap<String, String> arguments;
+  ArrayList<Argument> arguments = new ArrayList<Arguments>();
   
   public int eventTimes;
   private int eventCount = 0;
   
-  public Event(String eventClass, HashMap<String, String> args, int eTimes) {
+  public Event(String eventClass, ArrayList<Argument> args, int eTimes) {
     this.EventClass = Class.forName(eventClass);
     
     if(this.EventClass == null) {
@@ -52,16 +52,12 @@ public class Event {
     this.EventClass = newEventClass;
   }
   
-  public void setArguments(HashMap<String, String> newArguments) {
+  public void setArguments(ArrayList<Argument> newArguments) {
     this.arguments = newArguments;
   }
   
-  public void setArgument(String argumentName, String argumentValue) {
-    this.arguements.put(argumentName, argumentValue);
-  }
-  
-  public void addArgument(String argumentName, String argumentValue) {
-    this.arguments.put(argumentName, argumentValue);
+  public void addArgument(Argument argument) {
+    this.arguments.add(argument);
   }
   
   public void setEventTimes(int newEventTimes) {
