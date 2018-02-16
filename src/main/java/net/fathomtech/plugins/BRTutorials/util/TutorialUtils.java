@@ -9,27 +9,28 @@ public class TutorialUtils {
     
     Permission permission = new Permission(section.getString("permission"));
     
-    ConfigurationSection steps = section.getConfigurationSection("steps");
+    Step[] steps;
+    
+    ConfigurationSection stepSection = section.getConfigurationSection("steps");
     String[] stepNames = ((ArrayList<String>) steps.getKeys(false)).toArray();
     
     for(String stepName : stepNames) {
       
       // MESSAGES AND SOUNDS
-      String beginMessage = steps.getString(stepName + ".begin.message");
-      String beginSound = steps.getString(stepName + ".begin.sound");
+      String beginMessage = stepSection.getString(stepName + ".begin.message");
+      String beginSound = stepSection.getString(stepName + ".begin.sound");
       
-      String failureMessage = steps.getString(stepName + ".failure.message");
-      String failureSound = steps.getString(stepName + ".failure.sound");
+      String failureMessage = stepSection.getString(stepName + ".failure.message");
+      String failureSound = stepSection.getString(stepName + ".failure.sound");
       
-      String completionMessage = steps.getString(stepName + ".completion.message");
-      String completionSound = steps.getString(stepName + ".completion.sound");
+      String completionMessage = stepSection.getString(stepName + ".completion.message");
+      String completionSound = stepSection.getString(stepName + ".completion.sound");
       
       // RETREIVING EVENT VIA REFLECTIONS
-      ConfigurationSection eventSection = steps.getConfigurationSection(stepName + ".event");
+      ConfigurationSection eventSection = stepSection.getConfigurationSection(stepName + ".event");
       
       // NOW LET'S GET THE CLASS
       String eventClassName = eventSection.getString("type");
-      Class EventClass = Class.forName(eventClassName);
       
       HashMap<String, ConfigurationSection> methods = (HashMap<String, ConfigurationSection>) eventSection.get("arguments.methods");
       ArrayList<Argument> arguments = new ArrayList<Argument>();
@@ -43,6 +44,15 @@ public class TutorialUtils {
         arguments.add(argument);
       }
       
+      int eventTimes = eventSection.getInt("times");
+      Event event = new Event(eventClassName, arguments, eventTimes);
+      
+      // Create our step :D
+      Step step = new Step(stepName, beginMessage, failureMessage, completionMessage, beginSound, failureSound, completionSound, event);
+      steps.push(step);
     }
+    
+    // Now finally, we'll create our tutorial.
+    Tutorial tutorial = new Tutorial();
   }
 }
