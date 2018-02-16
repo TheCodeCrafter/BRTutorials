@@ -64,4 +64,51 @@ public class TutorialUtils {
     
     return tutorial;
   }
+  
+  public static void runTutorial(Player player, Tutorial tutorial) {
+    if(player == null || tutorial == null) {
+      plugin.getLogger().error("An invalid player or tutorial was passed!");
+    }
+    
+    String prefix = "";
+    String suffix = "";
+    
+    // Now let's get the prefix and suffix!
+    if(tutorial.getPrefix() !== null) {
+      prefix = tutorial.getPrefix();
+    }
+    
+    if(tutorial.getSuffix() !== null) {
+      suffix = tutorial.getSuffix();
+    }
+    
+    // Now we need to send the begin message (if it exists)
+    if(tutorial.getStartMessage() !== null) {
+      player.sendMessage(prefix + tutorial.getStartMessage() + suffix);
+    }
+    
+    // Next, we iterate to the first step of the tutorial, and start it's messages, etc.
+    for(int i = 0; i < tutorial.getSteps().length; i++) {
+      // First off, let's make a variable for this step;
+      Step step = tutorial.getStep(i);
+      
+      // Now let's get the begin message and sound
+      if(step.getBeginMessage() !== null) {
+        player.sendMessage(prefix + step.getBeginMessage() + suffix);
+      }
+      
+      // Now let's get the begin sound
+      if(step.getBeginSound() !== null) {
+        try {
+          player.playSound(); // TODO: Add parameters
+        } catch(Error e) {
+          // If the sound specified in the string technically doesn't exist (mispellings often cause this), then throw an error.
+          plugin.getLogger().error("The sound specified in " step.getName() + " (Step " + i " in " + tutorial.getName() + ") does not exist");
+          e.printStackTrace();
+        }
+      }
+      
+      // Now that we've taken care of some small
+    }
+  }
 }
