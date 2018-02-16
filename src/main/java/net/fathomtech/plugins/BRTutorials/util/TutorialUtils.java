@@ -7,6 +7,9 @@ public class TutorialUtils {
     String startMessage = section.getString("start");
     String endMessage = section.getString("end");
     
+    String prefix = section.getString("prefix");
+    String suffix = section.getString("suffix");
+    
     Permission permission = new Permission(section.getString("permission"));
     
     Step[] steps;
@@ -53,6 +56,7 @@ public class TutorialUtils {
     }
     
     // Now finally, we'll create our tutorial.
-    Tutorial tutorial = new Tutorial();
+    Tutorial tutorial = new Tutorial(name, steps, prefix, suffix, startMessage, endMessage, permission);
+    return tutorial;
   }
 }
