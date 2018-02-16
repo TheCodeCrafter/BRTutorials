@@ -1,8 +1,10 @@
 package net.fathomtech.plugins.BRTutorials.util;
 
 public class TutorialUtils {
-  // METHODS
   
+  BRTutorialPlugin plugin = JavaPlugin.forClass(BRTutorialPlugin.class);
+  
+  // METHODS
   public static Tutorial createTutorial(String name, ConfigurationSection section) {
     String startMessage = section.getString("start");
     String endMessage = section.getString("end");
@@ -57,6 +59,9 @@ public class TutorialUtils {
     
     // Now finally, we'll create our tutorial.
     Tutorial tutorial = new Tutorial(name, steps, prefix, suffix, startMessage, endMessage, permission);
+    
+    plugin.addTutorial(tutorial);
+    
     return tutorial;
   }
 }
