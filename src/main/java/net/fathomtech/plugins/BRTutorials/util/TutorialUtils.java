@@ -108,7 +108,14 @@ public class TutorialUtils {
         }
       }
       
-      // Now that we've taken care of some small
+      // Now that we've taken care of some small messages/sounds let's get the event
+      Event event = step.getEvent();
+      
+      Class EventClass = event.getEventClass();
+      ArrayList<Argument> arguments = event.getArguments();
+      int eventCount = event.getEventCount();
+      
+      
     }
   }
 }
