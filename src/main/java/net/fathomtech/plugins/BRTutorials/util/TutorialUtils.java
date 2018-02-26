@@ -65,6 +65,10 @@ public class TutorialUtils {
     return tutorial;
   }
   
+  ///////////////////////
+  // RUNNING TUTORIALS //
+  ///////////////////////
+  
   public static void runTutorial(Player player, Tutorial tutorial) {
     if(player == null || tutorial == null) {
       plugin.getLogger().error("An invalid player or tutorial was passed!");
@@ -115,7 +119,46 @@ public class TutorialUtils {
       ArrayList<Argument> arguments = event.getArguments();
       int eventCount = event.getEventCount();
       
+      event.startListening();
       
+      // TODO: Add failure conditions
+      while(!event.isDone) {
+        Sleep(500);
+      }
+      
+      // Event has been passed. Let's stop listening.
+      event.stopListening();
+      
+      // Let's send the completion message since the event is done
+      if(step.getCompletionMessage() !== null) {
+        player.sendMessage(prefix + step.getCompletionMessage() + suffix);
+      }
+      
+      // Now let's get the begin sound
+      if(step.getCompletionSound() !== null) {
+        try {
+          player.playSound(); // TODO: Add parameters
+        } catch(Error e) {
+          
+          // If the sound specified in the string technically doesn't exist (mispellings often cause this), then throw an error.
+          plugin.getLogger().error("The completion sound specified in " step.getName() + " (Step " + i " in " + tutorial.getName() + ") does not exist");
+          e.printStackTrace();
+        }
+      }
+      
+      // Now we're done with this step :D
     }
+    
+    // Now we've finished the steps and it's time to send the final messages from the tutorial.
+    if(tutorial.getEndMessage() !== null) {
+      player.sendMessage(prefix + tutorial.getEndMessage() + suffix);
+    }
+    
+    // Now we've done the tutorial! Woohoo.
   }
+  
+  //////////////////////
+  // HELPER FUNCTIONS //
+  //////////////////////
+  
 }
