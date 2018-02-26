@@ -1,12 +1,14 @@
 package net.fathomtech.plugins.BRTutorials.handlers;
 
 public class Event {
-  public class EventClass;
+  public Class<?> EventClass;
   
   ArrayList<Argument> arguments = new ArrayList<Arguments>();
   
   public int eventTimes;
   private int eventCount = 0;
+  
+  public boolean isDone = false;
   
   public Event(String eventClass, ArrayList<Argument> args, int eTimes) {
     this.EventClass = Class.forName(eventClass);
@@ -22,6 +24,24 @@ public class Event {
     } else {
       this.eventTimes = eTimes;
     }
+  }
+  
+  // METHODS
+  public void startListening() {
+    // Activate the event's handler.
+    this.runEvent -> {
+      // Now here we are going to look for the variables and setup argument handlers.
+      // I need to figure out how to run special methods on "eventHandler" that are defined via string. For instance, event.getType() (which you could use in a GUI listener, etc) would be something that you would check for.
+    }
+  }
+  
+  public void stopListening() {
+    // Deactivate the event's handler.
+  }
+  
+  // Object eventHandler = this.EventClass.newInstance(); ?? Reference: https://docs.oracle.com/javase/tutorial/reflect/member/methodInvocation.html
+  private void runEvent(this.EventClass eventHandler) {
+    // Placeholder function that's used for deactivation and activation.
   }
   
   // GETTERS
